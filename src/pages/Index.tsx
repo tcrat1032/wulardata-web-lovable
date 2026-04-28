@@ -1,16 +1,168 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import PublicLayout from "@/components/site/PublicLayout";
+import CTABand from "@/components/site/CTABand";
+import { Link } from "react-router-dom";
+import { ArrowRight, ShieldCheck, Server, Globe, Wrench, Cpu, HardDrive, Mail, CheckCircle2 } from "lucide-react";
+import { PILLARS, ALL_SERVICES } from "@/data/services";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const FEATURED_SLUGS = ["dedicated-servers", "vps", "web-hosting", "domain-registration"];
+
+const Index = () => {
+  const featured = ALL_SERVICES.filter(s => FEATURED_SLUGS.includes(s.slug));
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <PublicLayout>
+      {/* Hero */}
+      <section className="relative bg-gradient-hero text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, hsl(var(--cyan)) 0%, transparent 50%)' }} />
+        <div className="container-wd relative py-20 md:py-32">
+          <div className="max-w-3xl">
+            <p className="eyebrow text-[hsl(var(--cyan))] mb-4">Indian data centers · 24×7 NOC</p>
+            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-5">
+              Cloud, hosting and managed IT — built for Indian business.
+            </h1>
+            <p className="text-lg md:text-xl text-white/85 max-w-2xl mb-8">
+              Dedicated servers, VPS, web hosting, domains and full-stack managed services. One trusted partner for your entire digital infrastructure.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link to="/contact" className="btn-cta">Get a quote <ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/data-center-services" className="btn-outline-light">Explore services</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust strip */}
+      <section className="border-b bg-white">
+        <div className="container-wd grid grid-cols-2 md:grid-cols-4 divide-x">
+          {[
+            { v: "99.99%", l: "Uptime SLA" },
+            { v: "3+", l: "Indian data centers" },
+            { v: "500+", l: "Customers served" },
+            { v: "24×7", l: "NOC & support" },
+          ].map(s => (
+            <div key={s.l} className="px-4 py-8 text-center">
+              <p className="text-3xl md:text-4xl font-extrabold text-[hsl(var(--deep-blue))]">{s.v}</p>
+              <p className="text-xs uppercase tracking-wider text-muted-foreground mt-1">{s.l}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Three pillars */}
+      <section className="section bg-secondary">
+        <div className="container-wd">
+          <div className="text-center mb-12">
+            <p className="eyebrow mb-2">What we do</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold">Three pillars. One partner.</h2>
+            <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">From bare-metal infrastructure to domains and managed services — everything your business needs to run online.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {PILLARS.map(p => {
+              const Icon = p.icon;
+              return (
+                <Link key={p.slug} to={`/${p.slug}`} className="group rounded-lg bg-white p-8 shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all">
+                  <div className="h-12 w-12 rounded-md bg-gradient-cyan flex items-center justify-center mb-5">
+                    <Icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{p.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-5">{p.description}</p>
+                  <ul className="space-y-1.5 mb-6">
+                    {p.services.slice(0, 4).map(s => (
+                      <li key={s.slug} className="text-xs text-foreground flex items-center gap-2">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-[hsl(var(--primary-mid))]" /> {s.name}
+                      </li>
+                    ))}
+                    {p.services.length > 4 && <li className="text-xs text-muted-foreground">+ {p.services.length - 4} more</li>}
+                  </ul>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[hsl(var(--deep-blue))] group-hover:gap-2.5 transition-all">Explore <ArrowRight className="h-4 w-4" /></span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured services with pricing */}
+      <section className="section">
+        <div className="container-wd">
+          <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
+            <div>
+              <p className="eyebrow mb-2">Featured services</p>
+              <h2 className="text-3xl md:text-4xl font-extrabold">Popular plans, indicative pricing</h2>
+            </div>
+            <Link to="/contact" className="text-sm font-semibold text-[hsl(var(--deep-blue))] hover:underline">Need something custom? Talk to sales →</Link>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {featured.map(s => {
+              const Icon = s.icon;
+              return (
+                <div key={s.slug} className="rounded-lg border bg-card p-6 hover:border-[hsl(var(--cyan))] hover:shadow-elevated transition-all">
+                  <Icon className="h-8 w-8 text-[hsl(var(--deep-blue))] mb-3" />
+                  <h3 className="font-bold mb-1">{s.name}</h3>
+                  <p className="text-xs text-muted-foreground mb-4">{s.shortDesc}</p>
+                  <p className="text-2xl font-extrabold text-[hsl(var(--deep-blue))]">{s.startingPrice}<span className="text-xs font-normal text-muted-foreground">/mo</span></p>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-4">Starting price</p>
+                  <Link to={`/contact?service=${encodeURIComponent(s.name)}`} className="text-sm font-semibold text-[hsl(var(--deep-blue))] hover:underline">Configure →</Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Why WularData */}
+      <section className="section bg-secondary">
+        <div className="container-wd">
+          <div className="text-center mb-12">
+            <p className="eyebrow mb-2">Why WularData</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold">Built for performance, run by experts</h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: Globe, t: "Indian DC presence", d: "Low-latency hosting across multiple Indian metros, with data residency assured." },
+              { icon: ShieldCheck, t: "Security first", d: "DDoS protection, encryption at rest and in transit, and ISO-aligned controls." },
+              { icon: Wrench, t: "24×7 NOC", d: "Real engineers on call around the clock. Average first response under 15 minutes." },
+              { icon: Cpu, t: "Scalable by design", d: "Vertical and horizontal scaling on demand — no painful migrations." },
+            ].map(b => (
+              <div key={b.t} className="rounded-lg bg-white p-6 shadow-card">
+                <b.icon className="h-7 w-7 text-[hsl(var(--cyan))] mb-3" />
+                <h3 className="font-bold mb-2">{b.t}</h3>
+                <p className="text-sm text-muted-foreground">{b.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industries */}
+      <section className="section">
+        <div className="container-wd">
+          <p className="eyebrow text-center mb-2">Solutions by industry</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10">Trusted across sectors</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {["BFSI", "E-commerce", "SaaS", "Media", "Healthcare", "Education"].map(i => (
+              <div key={i} className="rounded-lg border bg-card p-5 text-center hover:border-[hsl(var(--cyan))] transition-colors">
+                <p className="font-semibold text-sm">{i}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial */}
+      <section className="section bg-[hsl(var(--deep-blue))] text-white">
+        <div className="container-wd max-w-4xl text-center">
+          <p className="eyebrow text-[hsl(var(--cyan))] mb-4">Customer story</p>
+          <blockquote className="text-2xl md:text-3xl font-semibold leading-snug mb-6">
+            "WularData migrated our entire e-commerce stack with zero downtime. Page load times dropped 40% and our ops team finally sleeps at night."
+          </blockquote>
+          <p className="text-white/70 text-sm">— CTO, leading Indian retail brand</p>
+        </div>
+      </section>
+
+      <CTABand />
+    </PublicLayout>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
