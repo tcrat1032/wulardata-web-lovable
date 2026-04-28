@@ -43,12 +43,15 @@ const Contact = () => {
     setSubmitting(true);
     const { data: { user } } = await supabase.auth.getUser();
     const { error } = await supabase.from("quote_requests").insert({
-      ...result.data,
+      contact_name: result.data.contact_name,
+      email: result.data.email,
+      service_category: result.data.service_category,
+      service_name: result.data.service_name,
       user_id: user?.id ?? null,
       phone: result.data.phone || null,
       company: result.data.company || null,
       message: result.data.message || null,
-    });
+    } as any);
     setSubmitting(false);
     if (error) {
       toast.error("Could not submit. Please try again.");
