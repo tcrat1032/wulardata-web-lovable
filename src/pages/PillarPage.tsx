@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useLocation, Navigate, Link } from "react-router-dom";
 import PublicLayout from "@/components/site/PublicLayout";
 import ServiceCard from "@/components/site/ServiceCard";
 import CTABand from "@/components/site/CTABand";
@@ -7,7 +7,8 @@ import { PILLARS } from "@/data/services";
 import { ArrowRight } from "lucide-react";
 
 const PillarPage = () => {
-  const { slug } = useParams();
+  const { pathname } = useLocation();
+  const slug = pathname.replace(/^\//, "");
   const pillar = PILLARS.find(p => p.slug === slug);
 
   useEffect(() => {
