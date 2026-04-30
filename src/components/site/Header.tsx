@@ -4,7 +4,7 @@ import { Phone, HelpCircle, Globe, ChevronDown, Menu, X, User } from "lucide-rea
 import { PILLARS } from "@/data/services";
 import { supabase } from "@/integrations/supabase/client";
 import type { User as AuthUser } from "@supabase/supabase-js";
-import logo from "@/assets/wulardata-logo.png";
+import Logo from "@/components/site/Logo";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -41,9 +41,7 @@ const Header = () => {
 
       {/* Main nav */}
       <div className="container-wd flex h-16 items-center justify-between" onMouseLeave={() => setOpenMenu(null)}>
-        <Link to="/" className="flex items-center gap-2" aria-label="WularData home">
-          <img src={logo} alt="WularData logo" className="h-10 w-auto md:h-11" width={1024} height={512} />
-        </Link>
+        <Logo />
 
         <nav className="hidden lg:flex items-center gap-1">
           {PILLARS.map(p => (
