@@ -43,22 +43,58 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-6">
             {PILLARS.map(p => {
               const Icon = p.icon;
+              const words = p.name.split(" ");
+              const firstWord = words[0];
+              const restWords = words.slice(1).join(" ");
               return (
-                <Link key={p.slug} to={`/${p.slug}`} className="group rounded-lg bg-white p-8 shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all">
-                  <div className="h-12 w-12 rounded-md bg-gradient-cyan flex items-center justify-center mb-5">
-                    <Icon className="h-6 w-6 text-white" />
+                <Link
+                  key={p.slug}
+                  to={`/${p.slug}`}
+                  className="group relative overflow-hidden rounded-lg bg-gradient-to-br from-[hsl(var(--deep-blue))] via-[hsl(var(--royal))] to-[hsl(var(--deep-blue))] p-8 shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all border border-white/10"
+                >
+                  {/* Subtle glow accents */}
+                  <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-[hsl(140_70%_55%/0.18)] blur-3xl pointer-events-none" />
+                  <div className="absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-[hsl(var(--cyan)/0.15)] blur-3xl pointer-events-none" />
+
+                  <div className="relative">
+                    <div className="h-12 w-12 rounded-md bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-5">
+                      <Icon className="h-6 w-6 text-[hsl(140_70%_60%)]" />
+                    </div>
+
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/70 mb-2">
+                      What we offer
+                    </p>
+                    <h3 className="text-2xl font-extrabold leading-tight mb-3">
+                      <span className="text-[hsl(140_70%_60%)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]">
+                        {firstWord}
+                      </span>
+                      {restWords && (
+                        <>
+                          {" "}
+                          <span className="text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]">
+                            {restWords}
+                          </span>
+                        </>
+                      )}
+                    </h3>
+                    <p className="text-sm text-white/85 mb-5 leading-relaxed">{p.description}</p>
+
+                    <ul className="space-y-1.5 mb-6">
+                      {p.services.slice(0, 4).map(s => (
+                        <li key={s.slug} className="text-xs font-medium text-white/90 flex items-center gap-2">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-[hsl(140_70%_60%)] shrink-0" />
+                          {s.name}
+                        </li>
+                      ))}
+                      {p.services.length > 4 && (
+                        <li className="text-xs text-white/60">+ {p.services.length - 4} more</li>
+                      )}
+                    </ul>
+
+                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[hsl(140_70%_65%)] group-hover:gap-2.5 transition-all">
+                      Explore <ArrowRight className="h-4 w-4" />
+                    </span>
                   </div>
-                  <h3 className="text-xl font-bold mb-2">{p.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-5">{p.description}</p>
-                  <ul className="space-y-1.5 mb-6">
-                    {p.services.slice(0, 4).map(s => (
-                      <li key={s.slug} className="text-xs text-foreground flex items-center gap-2">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-[hsl(var(--primary-mid))]" /> {s.name}
-                      </li>
-                    ))}
-                    {p.services.length > 4 && <li className="text-xs text-muted-foreground">+ {p.services.length - 4} more</li>}
-                  </ul>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[hsl(var(--deep-blue))] group-hover:gap-2.5 transition-all">Explore <ArrowRight className="h-4 w-4" /></span>
                 </Link>
               );
             })}
