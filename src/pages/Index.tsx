@@ -1,5 +1,6 @@
 import PublicLayout from "@/components/site/PublicLayout";
 import CTABand from "@/components/site/CTABand";
+import HeroSlider from "@/components/site/HeroSlider";
 import { Link } from "react-router-dom";
 import { ArrowRight, ShieldCheck, Server, Globe, Wrench, Cpu, HardDrive, Mail, CheckCircle2 } from "lucide-react";
 import { PILLARS, ALL_SERVICES } from "@/data/services";
@@ -11,25 +12,8 @@ const Index = () => {
 
   return (
     <PublicLayout>
-      {/* Hero */}
-      <section className="relative bg-gradient-hero text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, hsl(var(--cyan)) 0%, transparent 50%)' }} />
-        <div className="container-wd relative py-20 md:py-32">
-          <div className="max-w-3xl">
-            <p className="eyebrow text-[hsl(var(--cyan))] mb-4">Indian data centers · 24×7 NOC</p>
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-5">
-              Cloud, hosting and managed IT — built for Indian business.
-            </h1>
-            <p className="text-lg md:text-xl text-white/85 max-w-2xl mb-8">
-              Dedicated servers, VPS, web hosting, domains and full-stack managed services. One trusted partner for your entire digital infrastructure.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link to="/contact" className="btn-cta">Get a quote <ArrowRight className="h-4 w-4" /></Link>
-              <Link to="/data-center-services" className="btn-outline-light">Explore services</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero slideshow */}
+      <HeroSlider />
 
       {/* Trust strip */}
       <section className="border-b bg-white">
