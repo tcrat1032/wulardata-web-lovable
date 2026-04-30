@@ -16,12 +16,12 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    /* Deep blue #000E9C */
-    --primary: 234 100% 31%;
+    /* Deep blue (darkened ~20%) */
+    --primary: 234 100% 25%;
     --primary-foreground: 0 0% 100%;
 
-    /* Royal blue #123FBF */
-    --primary-mid: 224 83% 41%;
+    /* Royal blue (darkened ~20%) */
+    --primary-mid: 224 83% 33%;
 
     /* Cyan #1FBFFF */
     --accent: 198 100% 56%;
@@ -38,31 +38,31 @@
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 234 100% 31%;
+    --ring: 234 100% 25%;
 
     --radius: 0.375rem;
 
     /* Brand-specific tokens */
-    --deep-blue: 234 100% 31%;
+    --deep-blue: 234 100% 25%;
     --cyan: 198 100% 56%;
-    --royal: 224 83% 41%;
+    --royal: 224 83% 33%;
     --slate-bg: 220 14% 96%;
-    --footer-bg: 234 100% 18%;
+    --footer-bg: 234 100% 14%;
     --footer-fg: 214 100% 92%;
 
-    --gradient-hero: linear-gradient(135deg, hsl(234 100% 22%) 0%, hsl(234 100% 31%) 50%, hsl(224 83% 41%) 100%);
-    --gradient-cyan: linear-gradient(135deg, hsl(234 100% 31%), hsl(198 100% 56%));
-    --shadow-card: 0 1px 3px 0 hsl(234 100% 31% / 0.06), 0 4px 16px -2px hsl(234 100% 31% / 0.08);
-    --shadow-elevated: 0 8px 24px -4px hsl(234 100% 31% / 0.18);
+    --gradient-hero: linear-gradient(135deg, hsl(234 100% 18%) 0%, hsl(234 100% 25%) 50%, hsl(224 83% 33%) 100%);
+    --gradient-cyan: linear-gradient(135deg, hsl(234 100% 25%), hsl(198 100% 56%));
+    --shadow-card: 0 1px 3px 0 hsl(234 100% 25% / 0.06), 0 4px 16px -2px hsl(234 100% 25% / 0.08);
+    --shadow-elevated: 0 8px 24px -4px hsl(234 100% 25% / 0.18);
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 234 100% 31%;
+    --sidebar-primary: 234 100% 25%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 210 40% 96%;
     --sidebar-accent-foreground: 234 100% 20%;
     --sidebar-border: 214 32% 91%;
-    --sidebar-ring: 234 100% 31%;
+    --sidebar-ring: 234 100% 25%;
   }
 
   .dark {
