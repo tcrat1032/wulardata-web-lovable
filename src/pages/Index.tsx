@@ -103,12 +103,15 @@ const Index = () => {
       </section>
 
       {/* Featured services with pricing */}
-      <section className="section">
+      <section className="pt-6 pb-16 md:pt-8 md:pb-24">
         <div className="container-wd">
           <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
             <div>
               <p className="eyebrow mb-2">Featured services</p>
-              <h2 className="text-3xl md:text-4xl font-extrabold">Popular plans, indicative pricing</h2>
+              <h2 className="text-3xl md:text-4xl font-extrabold">
+                <span className="text-[hsl(140_70%_40%)]">Explore</span>{" "}
+                <span className="text-[hsl(var(--deep-blue))]">Popular Plans</span>
+              </h2>
             </div>
             <Link to="/contact" className="text-sm font-semibold text-[hsl(var(--deep-blue))] hover:underline">Need something custom? Talk to sales →</Link>
           </div>
