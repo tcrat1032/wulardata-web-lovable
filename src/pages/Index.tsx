@@ -24,7 +24,7 @@ const Index = () => {
             { v: "500+", l: "Customers served" },
             { v: "24×7", l: "NOC & support" },
           ].map(s => (
-            <div key={s.l} className="px-4 py-8 text-center">
+            <div key={s.l} className="px-4 py-4 text-center">
               <p className="text-3xl md:text-4xl font-extrabold text-[hsl(var(--deep-blue))]">{s.v}</p>
               <p className="text-xs uppercase tracking-wider text-muted-foreground mt-1">{s.l}</p>
             </div>
@@ -33,7 +33,7 @@ const Index = () => {
       </section>
 
       {/* Three pillars */}
-      <section className="section bg-secondary">
+      <section className="pt-6 pb-16 md:pt-8 md:pb-24 bg-secondary">
         <div className="container-wd">
           <div className="text-center mb-12">
             <p className="eyebrow mb-2">What we do</p>
