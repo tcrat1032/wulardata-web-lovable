@@ -41,11 +41,8 @@ const Header = () => {
 
       {/* Main nav */}
       <div className="container-wd flex h-16 items-center justify-between" onMouseLeave={() => setOpenMenu(null)}>
-        <Link to="/" className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded bg-[hsl(var(--deep-blue))] flex items-center justify-center">
-            <div className="h-3 w-3 rounded-sm bg-[hsl(var(--cyan))]" />
-          </div>
-          <span className="text-xl font-extrabold tracking-tight text-[hsl(var(--deep-blue))]">WularData</span>
+        <Link to="/" className="flex items-center gap-2" aria-label="WularData home">
+          <img src={logo} alt="WularData logo" className="h-10 w-auto md:h-11" width={1024} height={512} />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
