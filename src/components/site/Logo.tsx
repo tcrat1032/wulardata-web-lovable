@@ -29,7 +29,7 @@ const Logo = ({ variant = "auto", className = "" }: LogoProps) => {
           width={512}
           height={512}
           decoding="async"
-          className={`h-9 w-9 sm:h-10 sm:w-10 object-contain ${variant === "auto" ? "sm:hidden" : ""}`}
+          className={`h-12 w-12 sm:h-13 sm:w-13 object-contain ${variant === "auto" ? "sm:hidden" : ""}`}
           onError={(e) => {
             // Hide broken icon so the wordmark still shows in auto mode
             (e.currentTarget as HTMLImageElement).style.display = "none";
@@ -44,7 +44,7 @@ const Logo = ({ variant = "auto", className = "" }: LogoProps) => {
           width={1024}
           height={512}
           decoding="async"
-          className={`h-9 sm:h-10 md:h-11 lg:h-12 w-auto object-contain ${variant === "auto" ? "hidden sm:block" : ""}`}
+          className={`h-12 sm:h-13 md:h-14 lg:h-[3.9rem] w-auto object-contain ${variant === "auto" ? "hidden sm:block" : ""}`}
           onError={(e) => {
             // Final fallback: text wordmark
             const img = e.currentTarget as HTMLImageElement;
