@@ -4,6 +4,7 @@ import { Phone, HelpCircle, Globe, ChevronDown, Menu, X, User } from "lucide-rea
 import { PILLARS } from "@/data/services";
 import { supabase } from "@/integrations/supabase/client";
 import type { User as AuthUser } from "@supabase/supabase-js";
+import logo from "@/assets/wulardata-logo.png";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
