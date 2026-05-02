@@ -26,7 +26,7 @@ const Header = () => {
         <div className="container-wd flex h-9 items-center justify-between">
           <div className="flex items-center gap-4">
             <span className="hidden sm:inline-flex items-center gap-1.5"><Globe className="h-3.5 w-3.5" /> India (English)</span>
-            <a href="tel:+911800000000" className="hidden md:inline-flex items-center gap-1.5 hover:text-[hsl(var(--cyan))]"><Phone className="h-3.5 w-3.5" /> 1800 000 000</a>
+            <a href="tel:+916280265767" className="hidden md:inline-flex items-center gap-1.5 hover:text-[hsl(var(--cyan))]"><Phone className="h-3.5 w-3.5" /> +91 6280265767</a>
           </div>
           <div className="flex items-center gap-4">
             <Link to="/contact" className="hidden md:inline-flex items-center gap-1.5 hover:text-[hsl(var(--cyan))]"><HelpCircle className="h-3.5 w-3.5" /> Help</Link>
