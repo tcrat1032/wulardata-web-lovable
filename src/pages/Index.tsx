@@ -6,6 +6,7 @@ import { ArrowRight, ShieldCheck, Server, Globe, Wrench, Cpu, HardDrive, Mail, C
 import { PILLARS, ALL_SERVICES } from "@/data/services";
 import dataCenterCardImg from "@/assets/data-center-card.png";
 import hostingServicesCardImg from "@/assets/hosting-services-card.png";
+import itInfrastructureCardImg from "@/assets/it-infrastructure-card.png";
 
 const FEATURED_SLUGS = ["dedicated-servers", "vps", "web-hosting", "domain-registration"];
 
@@ -64,6 +65,8 @@ const Index = () => {
                         <img src={dataCenterCardImg} alt="Data center building" className="h-full w-full object-cover" />
                       ) : p.slug === "hosting-services" ? (
                         <img src={hostingServicesCardImg} alt="Hosting services illustration" className="h-full w-full object-cover" />
+                      ) : p.slug === "it-infrastructure" ? (
+                        <img src={itInfrastructureCardImg} alt="IT infrastructure illustration" className="h-full w-full object-cover" />
                       ) : (
                         <Icon className="h-6 w-6 text-[hsl(140_70%_60%)]" />
                       )}
