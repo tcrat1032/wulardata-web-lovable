@@ -4,6 +4,7 @@ import HeroSlider from "@/components/site/HeroSlider";
 import { Link } from "react-router-dom";
 import { ArrowRight, ShieldCheck, Server, Globe, Wrench, Cpu, HardDrive, Mail, CheckCircle2 } from "lucide-react";
 import { PILLARS, ALL_SERVICES } from "@/data/services";
+import dataCenterCardImg from "@/assets/data-center-card.png";
 
 const FEATURED_SLUGS = ["dedicated-servers", "vps", "web-hosting", "domain-registration"];
 
@@ -57,8 +58,12 @@ const Index = () => {
                   <div className="absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-[hsl(var(--cyan)/0.15)] blur-3xl pointer-events-none" />
 
                   <div className="relative">
-                    <div className="h-12 w-12 rounded-md bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-5">
-                      <Icon className="h-6 w-6 text-[hsl(140_70%_60%)]" />
+                    <div className="h-14 w-14 rounded-md bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-5 overflow-hidden">
+                      {p.slug === "data-center-services" ? (
+                        <img src={dataCenterCardImg} alt="Data center building" className="h-full w-full object-cover" />
+                      ) : (
+                        <Icon className="h-6 w-6 text-[hsl(140_70%_60%)]" />
+                      )}
                     </div>
 
                     <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/70 mb-2">
