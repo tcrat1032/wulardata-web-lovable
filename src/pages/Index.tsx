@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ShieldCheck, Server, Globe, Wrench, Cpu, HardDrive, Mail, CheckCircle2 } from "lucide-react";
 import { PILLARS, ALL_SERVICES } from "@/data/services";
 import dataCenterCardImg from "@/assets/data-center-card.png";
+import hostingServicesCardImg from "@/assets/hosting-services-card.png";
 
 const FEATURED_SLUGS = ["dedicated-servers", "vps", "web-hosting", "domain-registration"];
 
@@ -61,6 +62,8 @@ const Index = () => {
                     <div className="h-14 w-14 rounded-md bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-5 overflow-hidden">
                       {p.slug === "data-center-services" ? (
                         <img src={dataCenterCardImg} alt="Data center building" className="h-full w-full object-cover" />
+                      ) : p.slug === "hosting-services" ? (
+                        <img src={hostingServicesCardImg} alt="Hosting services illustration" className="h-full w-full object-cover" />
                       ) : (
                         <Icon className="h-6 w-6 text-[hsl(140_70%_60%)]" />
                       )}
