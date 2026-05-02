@@ -4,6 +4,7 @@ import HeroSlider from "@/components/site/HeroSlider";
 import { Link } from "react-router-dom";
 import { ArrowRight, ShieldCheck, Server, Globe, Wrench, Cpu, HardDrive, Mail, CheckCircle2 } from "lucide-react";
 import { PILLARS, ALL_SERVICES } from "@/data/services";
+import dataCenterCardImg from "@/assets/data-center-card.png";
 
 const FEATURED_SLUGS = ["dedicated-servers", "vps", "web-hosting", "domain-registration"];
 
