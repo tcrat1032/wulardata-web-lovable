@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PillarPage from "./pages/PillarPage";
 import DedicatedServers from "./pages/DedicatedServers";
+import VPS from "./pages/VPS";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/data-center-services" element={<PillarPage />} />
           <Route path="/data-center-services/dedicated-servers" element={<DedicatedServers />} />
+          <Route path="/data-center-services/vps" element={<VPS />} />
           <Route path="/hosting-services" element={<PillarPage />} />
           <Route path="/it-infrastructure" element={<PillarPage />} />
           <Route path="/about" element={<About />} />
