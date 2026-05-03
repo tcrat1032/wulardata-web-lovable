@@ -57,17 +57,21 @@ const Header = () => {
                   <div className="w-[420px] rounded-lg border bg-white p-3 shadow-elevated">
                     <p className="px-3 pb-2 eyebrow">{p.tagline}</p>
                     <ul className="grid gap-1">
-                      {p.services.map(s => (
-                        <li key={s.slug}>
-                          <Link to={`/${p.slug}#${s.slug}`} className="flex items-start gap-3 rounded-md px-3 py-2 hover:bg-secondary" onClick={() => setOpenMenu(null)}>
-                            <s.icon className="h-5 w-5 text-[hsl(var(--primary-mid))] shrink-0 mt-0.5" />
-                            <div>
-                              <p className="text-sm font-semibold text-foreground">{s.name}</p>
-                              <p className="text-xs text-muted-foreground line-clamp-1">{s.shortDesc}</p>
-                            </div>
-                          </Link>
-                        </li>
-                      ))}
+                      {p.services.map(s => {
+                        const isDedicated = p.slug === "data-center-services" && s.slug === "dedicated-servers";
+                        const to = isDedicated ? "/data-center-services/dedicated-servers" : `/${p.slug}#${s.slug}`;
+                        return (
+                          <li key={s.slug}>
+                            <Link to={to} className="flex items-start gap-3 rounded-md px-3 py-2 hover:bg-secondary" onClick={() => setOpenMenu(null)}>
+                              <s.icon className="h-5 w-5 text-[hsl(var(--primary-mid))] shrink-0 mt-0.5" />
+                              <div>
+                                <p className="text-sm font-semibold text-foreground">{s.name}</p>
+                                <p className="text-xs text-muted-foreground line-clamp-1">{s.shortDesc}</p>
+                              </div>
+                            </Link>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </div>
@@ -97,11 +101,15 @@ const Header = () => {
                   {p.name} <ChevronDown className="h-4 w-4 group-open:rotate-180 transition-transform" />
                 </summary>
                 <ul className="pl-4 pb-2 space-y-1">
-                  {p.services.map(s => (
-                    <li key={s.slug}>
-                      <Link to={`/${p.slug}#${s.slug}`} onClick={() => setMobileOpen(false)} className="block py-1 text-sm text-muted-foreground">{s.name}</Link>
-                    </li>
-                  ))}
+                  {p.services.map(s => {
+                    const isDedicated = p.slug === "data-center-services" && s.slug === "dedicated-servers";
+                    const to = isDedicated ? "/data-center-services/dedicated-servers" : `/${p.slug}#${s.slug}`;
+                    return (
+                      <li key={s.slug}>
+                        <Link to={to} onClick={() => setMobileOpen(false)} className="block py-1 text-sm text-muted-foreground">{s.name}</Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </details>
             ))}
