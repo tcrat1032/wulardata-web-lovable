@@ -63,6 +63,7 @@ const Header = () => {
                           "vps": "/data-center-services/vps",
                           "application-hosting": "/data-center-services/application-hosting",
                           "database-hosting": "/data-center-services/database-hosting",
+                          "storage-provisioning": "/data-center-services/storage-provisioning",
                         };
                         const to = p.slug === "data-center-services" && dcRoutes[s.slug]
                           ? dcRoutes[s.slug]
@@ -114,6 +115,7 @@ const Header = () => {
                       "vps": "/data-center-services/vps",
                       "application-hosting": "/data-center-services/application-hosting",
                           "database-hosting": "/data-center-services/database-hosting",
+                          "storage-provisioning": "/data-center-services/storage-provisioning",
                     };
                     const to = p.slug === "data-center-services" && dcRoutes[s.slug]
                       ? dcRoutes[s.slug]
