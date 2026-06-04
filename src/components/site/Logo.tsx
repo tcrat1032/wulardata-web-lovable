@@ -44,7 +44,7 @@ const Logo = ({ variant = "auto", className = "" }: LogoProps) => {
           width={1024}
           height={512}
           decoding="async"
-          className={`h-[3.6rem] sm:h-[3.9rem] md:h-[4.2rem] lg:h-[4.68rem] w-auto object-contain ${variant === "auto" ? "hidden sm:block" : ""}`}
+          className={`h-[4.32rem] sm:h-[4.68rem] md:h-[5.04rem] lg:h-[5.616rem] w-auto object-contain ${variant === "auto" ? "hidden sm:block" : ""}`}
           onError={(e) => {
             // Final fallback: text wordmark
             const img = e.currentTarget as HTMLImageElement;
