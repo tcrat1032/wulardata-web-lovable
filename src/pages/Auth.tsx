@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import PublicLayout from "@/components/site/PublicLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 import { toast } from "sonner";
 import { z } from "zod";
 import { Loader2 } from "lucide-react";
+
+const safeNext = (value: string | null) =>
+  value && value.startsWith("/") && !value.startsWith("//") ? value : null;
+
 
 const signInSchema = z.object({
   email: z.string().trim().email().max(255),
@@ -18,18 +22,24 @@ const signUpSchema = signInSchema.extend({
 
 const Auth = () => {
   const navigate = useNavigate();
+  const [params] = useSearchParams();
+  const next = safeNext(params.get("next"));
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ email: "", password: "", full_name: "", company: "" });
 
   useEffect(() => {
     document.title = "Sign in | WularData";
+    const go = () => {
+      if (next) window.location.replace(next);
+      else navigate("/portal", { replace: true });
+    };
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
-      if (session) navigate("/portal", { replace: true });
+      if (session) go();
     });
-    supabase.auth.getSession().then(({ data: { session } }) => { if (session) navigate("/portal", { replace: true }); });
+    supabase.auth.getSession().then(({ data: { session } }) => { if (session) go(); });
     return () => subscription.unsubscribe();
-  }, [navigate]);
+  }, [navigate, next]);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,7 +56,7 @@ const Auth = () => {
         email: r.data.email,
         password: r.data.password,
         options: {
-          emailRedirectTo: `${window.location.origin}/portal`,
+          emailRedirectTo: next ? `${window.location.origin}${next}` : `${window.location.origin}/portal`,
           data: { full_name: r.data.full_name, company: r.data.company },
         },
       });
@@ -56,9 +66,13 @@ const Auth = () => {
   };
 
   const google = async () => {
-    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: `${window.location.origin}/portal` });
+    const redirect_uri = next
+      ? `${window.location.origin}/auth?next=${encodeURIComponent(next)}`
+      : `${window.location.origin}/portal`;
+    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri });
     if (result.error) toast.error("Google sign-in failed");
   };
+
 
   return (
     <PublicLayout>

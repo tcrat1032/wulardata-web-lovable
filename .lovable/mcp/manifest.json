@@ -1,0 +1,307 @@
+{
+  "version": 1,
+  "sdk_version": "0.26.2",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://rrdkrfxspqhyjbfrsoff.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "ovh-insights-report",
+      "version": "0.1.0",
+      "title": "OVH Insights Report"
+    },
+    "tools": [
+      {
+        "name": "list_services",
+        "title": "List WularData services",
+        "description": "List the WularData service catalogue, optionally filtered to one category.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "enum": [
+                "Data Center Services",
+                "Hosting Services",
+                "IT Infrastructure"
+              ],
+              "description": "Optional category filter."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_quotes",
+        "title": "List my quote requests",
+        "description": "List the signed-in user's WularData quote requests, newest first.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "new",
+                "in_review",
+                "quoted",
+                "closed"
+              ],
+              "description": "Optional status filter."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 20,
+              "description": "Maximum rows to return."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "create_quote_request",
+        "title": "Create a quote request",
+        "description": "Create a new WularData quote request for the signed-in user.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "service_category": {
+              "type": "string",
+              "enum": [
+                "Data Center Services",
+                "Hosting Services",
+                "IT Infrastructure"
+              ],
+              "description": "Top-level service category."
+            },
+            "service_name": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 150,
+              "description": "Service the quote is for, e.g. 'VPS'."
+            },
+            "contact_name": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 100,
+              "description": "Contact person's name."
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 255,
+              "description": "Contact email address."
+            },
+            "company": {
+              "type": "string",
+              "maxLength": 150,
+              "description": "Company name."
+            },
+            "phone": {
+              "type": "string",
+              "maxLength": 30,
+              "description": "Contact phone number."
+            },
+            "message": {
+              "type": "string",
+              "maxLength": 2000,
+              "description": "Requirements and details."
+            }
+          },
+          "required": [
+            "service_category",
+            "service_name",
+            "contact_name",
+            "email"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_tickets",
+        "title": "List my support tickets",
+        "description": "List the signed-in user's WularData support tickets, newest first.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "open",
+                "pending",
+                "resolved",
+                "closed"
+              ],
+              "description": "Optional status filter."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 20,
+              "description": "Maximum rows to return."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "create_ticket",
+        "title": "Create a support ticket",
+        "description": "Open a new WularData support ticket for the signed-in user, with an optional first message.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "subject": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 200,
+              "description": "Short summary of the issue."
+            },
+            "service": {
+              "type": "string",
+              "maxLength": 150,
+              "description": "Affected service, e.g. 'Dedicated Servers'."
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "low",
+                "normal",
+                "high",
+                "urgent"
+              ],
+              "default": "normal",
+              "description": "Ticket priority."
+            },
+            "body": {
+              "type": "string",
+              "maxLength": 4000,
+              "description": "First message describing the issue."
+            }
+          },
+          "required": [
+            "subject"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_ticket_messages",
+        "title": "Read a ticket conversation",
+        "description": "Read the message thread of one of the signed-in user's WularData support tickets.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "ticket_id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "ID of the ticket."
+            }
+          },
+          "required": [
+            "ticket_id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "reply_to_ticket",
+        "title": "Reply to a support ticket",
+        "description": "Post a message on one of the signed-in user's WularData support tickets.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "ticket_id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "ID of the ticket to reply to."
+            },
+            "body": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000,
+              "description": "Message text."
+            }
+          },
+          "required": [
+            "ticket_id",
+            "body"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_profile",
+        "title": "Get my profile",
+        "description": "Return the signed-in user's WularData customer profile details.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
