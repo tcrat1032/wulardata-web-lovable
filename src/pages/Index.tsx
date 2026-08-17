@@ -11,6 +11,11 @@ import itInfrastructureCardImg from "@/assets/it-infrastructure-card.png";
 const FEATURED_SLUGS = ["dedicated-servers", "vps", "web-hosting", "domain-registration"];
 
 const Index = () => {
+  useSeo({
+    title: "WularData | VPS | Dedicated Servers | Cloud Hosting | IT Support | India",
+    description: "WularData provides dedicated servers, VPS, cloud hosting, managed databases, storage, backup/DR and managed IT services from Indian data centers.",
+    path: "/",
+  });
   const featured = ALL_SERVICES.filter(s => FEATURED_SLUGS.includes(s.slug));
 
   return (
