@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSeo } from "@/lib/seo";
 import PublicLayout from "@/components/site/PublicLayout";
 import CTABand from "@/components/site/CTABand";
 import { DB_ENGINES, DB_CATEGORIES, type DBEngineCategory } from "@/data/databaseHosting";
@@ -32,11 +33,11 @@ const FAQS = [
 ];
 
 const DatabaseHosting = () => {
+  useSeo({ title: 'Database Hosting — Managed PostgreSQL, MySQL, MongoDB | WularData', description: 'Managed database hosting with automated backups, point-in-time recovery, read replicas and 24x7 expert support.' });
   const [category, setCategory] = useState<DBEngineCategory | "All">("All");
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    document.title = "Database Hosting — Managed PostgreSQL, MySQL, MongoDB, Redis | WularData";
     window.scrollTo(0, 0);
   }, []);
 

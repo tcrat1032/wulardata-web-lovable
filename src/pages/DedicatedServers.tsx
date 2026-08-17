@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSeo } from "@/lib/seo";
 import PublicLayout from "@/components/site/PublicLayout";
 import CTABand from "@/components/site/CTABand";
 import { DEDICATED_SERVERS, SERVER_RANGES, type ServerRange } from "@/data/dedicatedServers";
@@ -25,13 +26,13 @@ const FEATURES = [
 ];
 
 const DedicatedServers = () => {
+  useSeo({ title: 'Dedicated Servers in India — Bare Metal Pricing | WularData', description: 'Single-tenant Intel Xeon and AMD EPYC dedicated servers in Indian data centers with NVMe storage, unmetered bandwidth and 99.99% SLA.' });
   const [range, setRange] = useState<ServerRange | "All">("All");
   const [brand, setBrand] = useState<"All" | "Intel" | "AMD">("All");
   const [minRam, setMinRam] = useState<number>(0);
   const [sort, setSort] = useState<"price-asc" | "price-desc" | "ram-desc">("price-asc");
 
   useEffect(() => {
-    document.title = "Dedicated Servers | WularData";
     window.scrollTo(0, 0);
   }, []);
 

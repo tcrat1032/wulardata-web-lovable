@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSeo } from "@/lib/seo";
 import PublicLayout from "@/components/site/PublicLayout";
 import CTABand from "@/components/site/CTABand";
 import { STORAGE_PRODUCTS, STORAGE_CATEGORIES, type StorageCategory } from "@/data/storageProducts";
@@ -32,11 +33,11 @@ const FAQS = [
 ];
 
 const StorageProvisioning = () => {
+  useSeo({ title: 'Storage Provisioning — Object, Block & File Storage | WularData', description: 'Scalable S3-compatible object storage, high-IOPS NVMe block storage and NFS file shares billed per GB.' });
   const [category, setCategory] = useState<StorageCategory | "All">("All");
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    document.title = "Storage Provisioning — Object, Block, File & Backup Storage | WularData";
     window.scrollTo(0, 0);
   }, []);
 

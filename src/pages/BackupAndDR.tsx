@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSeo } from "@/lib/seo";
 import PublicLayout from "@/components/site/PublicLayout";
 import CTABand from "@/components/site/CTABand";
 import { BACKUP_PRODUCTS, BACKUP_CATEGORIES, type BackupCategory } from "@/data/backupProducts";
@@ -42,11 +43,11 @@ const FAQS = [
 ];
 
 const BackupAndDR = () => {
+  useSeo({ title: 'Backup & Disaster Recovery — Veeam & Acronis BaaS | WularData', description: 'Policy-driven backup with immutable copies, offsite replication and orchestrated disaster recovery failover.' });
   const [category, setCategory] = useState<BackupCategory | "All">("All");
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    document.title = "Backup & Disaster Recovery — Veeam, Acronis, Immutable BaaS | WularData";
     window.scrollTo(0, 0);
   }, []);
 

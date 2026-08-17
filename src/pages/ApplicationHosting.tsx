@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSeo } from "@/lib/seo";
 import PublicLayout from "@/components/site/PublicLayout";
 import CTABand from "@/components/site/CTABand";
 import { APP_HOSTING_PRODUCTS, APP_HOSTING_CATEGORIES, type AppHostingCategory } from "@/data/applicationHosting";
@@ -32,11 +33,11 @@ const FAQS = [
 ];
 
 const ApplicationHosting = () => {
+  useSeo({ title: 'Application Hosting — Managed Cloud Platform | WularData', description: 'Managed application hosting for Node, Java, .NET and Python with auto-scaling, zero-downtime deploys and monitoring.' });
   const [category, setCategory] = useState<AppHostingCategory | "All">("All");
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    document.title = "Application Hosting — Managed Cloud Platform | WularData";
     window.scrollTo(0, 0);
   }, []);
 
