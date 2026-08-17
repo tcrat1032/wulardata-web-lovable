@@ -31,7 +31,7 @@ const Contact = () => {
     message: "",
   });
 
-  useEffect(() => { document.title = "Contact WularData"; window.scrollTo(0, 0); }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const servicesForCategory = PILLARS.find(p => p.slug === form.service_category)?.services || [];
 

@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const About = () => {
   useSeo({ title: 'About WularData — Indian Cloud & IT Infrastructure Partner', description: 'WularData is an Indian-owned provider of cloud, hosting and managed IT infrastructure with local data residency and 24x7 support.' });
-  useEffect(() => { document.title = "About WularData"; window.scrollTo(0, 0); }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <PublicLayout>
       <section className="bg-gradient-hero text-white">
