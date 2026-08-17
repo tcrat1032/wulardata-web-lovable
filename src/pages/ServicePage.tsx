@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import NotFound from "./NotFound";
 import PublicLayout from "@/components/site/PublicLayout";
 import CTABand from "@/components/site/CTABand";
 import { PILLARS } from "@/data/services";
