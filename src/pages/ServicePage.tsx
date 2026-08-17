@@ -26,7 +26,7 @@ const ServicePage = () => {
     path: `/${pillarSlug}/${serviceSlug}`,
   });
 
-  if (!pillar || !service) return <Navigate to="/404" replace />;
+  if (!pillar || !service) return <NotFound />;
 
   const Icon = service.icon;
 
