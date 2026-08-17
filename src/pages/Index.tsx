@@ -1,4 +1,5 @@
 import PublicLayout from "@/components/site/PublicLayout";
+import { useSeo } from "@/lib/seo";
 import CTABand from "@/components/site/CTABand";
 import HeroSlider from "@/components/site/HeroSlider";
 import { Link } from "react-router-dom";
