@@ -6,15 +6,15 @@ const Footer = () => {
   const cols = [
     {
       title: "Data Center",
-      links: PILLARS[0].services.map(s => ({ name: s.name, to: `/data-center-services#${s.slug}` })),
+      links: PILLARS[0].services.map(s => ({ name: s.name, to: `/data-center-services/${s.slug}` })),
     },
     {
       title: "Hosting",
-      links: PILLARS[1].services.map(s => ({ name: s.name, to: `/hosting-services#${s.slug}` })),
+      links: PILLARS[1].services.map(s => ({ name: s.name, to: `/hosting-services/${s.slug}` })),
     },
     {
       title: "IT Infrastructure",
-      links: PILLARS[2].services.map(s => ({ name: s.name, to: `/it-infrastructure#${s.slug}` })),
+      links: PILLARS[2].services.map(s => ({ name: s.name, to: `/it-infrastructure/${s.slug}` })),
     },
     {
       title: "Company",
