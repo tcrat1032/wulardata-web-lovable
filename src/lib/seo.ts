@@ -70,5 +70,5 @@ export function useSeo({
       m.setAttribute("property", "og:url");
       return m;
     }, url);
-  }, [title, description, path]);
+  }, [title, description, path, noindex]);
 }
