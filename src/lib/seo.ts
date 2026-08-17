@@ -17,13 +17,28 @@ export function useSeo({
   title,
   description,
   path,
+  noindex,
 }: {
   title: string;
   description?: string;
   path?: string;
+  noindex?: boolean;
 }) {
   useEffect(() => {
     document.title = title;
+
+    const robots = document.head.querySelector('meta[name="robots"]');
+    if (noindex) {
+      if (robots) robots.setAttribute("content", "noindex, follow");
+      else {
+        const m = document.createElement("meta");
+        m.setAttribute("name", "robots");
+        m.setAttribute("content", "noindex, follow");
+        document.head.appendChild(m);
+      }
+    } else if (robots?.getAttribute("content")?.includes("noindex")) {
+      robots.setAttribute("content", "index, follow");
+    }
 
     setMeta('meta[property="og:title"]', () => {
       const m = document.createElement("meta");
