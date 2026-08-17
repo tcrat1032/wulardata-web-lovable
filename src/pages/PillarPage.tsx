@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, Navigate, Link } from "react-router-dom";
 import PublicLayout from "@/components/site/PublicLayout";
+import { useSeo } from "@/lib/seo";
 import ServiceCard from "@/components/site/ServiceCard";
 import CTABand from "@/components/site/CTABand";
 import { PILLARS } from "@/data/services";
