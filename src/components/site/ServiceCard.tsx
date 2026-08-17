@@ -17,7 +17,9 @@ const ServiceCard = ({ service, pillarSlug }: { service: Service; pillarSlug: st
           </div>
         )}
       </div>
-      <h3 className="text-lg font-bold text-foreground mb-2">{service.name}</h3>
+      <h3 className="text-lg font-bold text-foreground mb-2">
+        <Link to={`/${pillarSlug}/${service.slug}`} className="hover:text-[hsl(var(--deep-blue))]">{service.name}</Link>
+      </h3>
       <p className="text-sm text-muted-foreground mb-4">{service.longDesc}</p>
       <ul className="space-y-1.5 mb-5">
         {service.features.slice(0, 4).map(f => (
@@ -27,12 +29,20 @@ const ServiceCard = ({ service, pillarSlug }: { service: Service; pillarSlug: st
           </li>
         ))}
       </ul>
-      <Link
-        to={`/contact?service=${encodeURIComponent(service.name)}&category=${encodeURIComponent(pillarSlug)}`}
-        className="inline-flex items-center gap-1.5 text-sm font-semibold text-[hsl(var(--deep-blue))] hover:gap-2.5 transition-all"
-      >
-        Request a quote <ArrowRight className="h-4 w-4" />
-      </Link>
+      <div className="flex flex-wrap items-center gap-4">
+        <Link
+          to={`/${pillarSlug}/${service.slug}`}
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-[hsl(var(--deep-blue))] hover:gap-2.5 transition-all"
+        >
+          Learn more <ArrowRight className="h-4 w-4" />
+        </Link>
+        <Link
+          to={`/contact?service=${encodeURIComponent(service.name)}&category=${encodeURIComponent(pillarSlug)}`}
+          className="text-sm font-semibold text-muted-foreground hover:text-[hsl(var(--deep-blue))]"
+        >
+          Request a quote
+        </Link>
+      </div>
     </article>
   );
 };
