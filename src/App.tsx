@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PillarPage from "./pages/PillarPage";
+import ServicePage from "./pages/ServicePage";
 import DedicatedServers from "./pages/DedicatedServers";
 import VPS from "./pages/VPS";
 import ApplicationHosting from "./pages/ApplicationHosting";
@@ -48,6 +49,9 @@ const App = () => (
           <Route path="/portal/tickets" element={<Tickets />} />
           <Route path="/portal/profile" element={<Profile />} />
           <Route path="/admin" element={<Admin />} />
+          {/* Generic service pages: /:pillar/:service — must stay after the
+              hand-built pages above so those keep their own components. */}
+          <Route path="/:pillarSlug/:serviceSlug" element={<ServicePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

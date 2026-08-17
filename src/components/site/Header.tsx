@@ -58,17 +58,7 @@ const Header = () => {
                     <p className="px-3 pb-2 eyebrow">{p.tagline}</p>
                     <ul className="grid gap-1">
                       {p.services.map(s => {
-                        const dcRoutes: Record<string, string> = {
-                          "dedicated-servers": "/data-center-services/dedicated-servers",
-                          "vps": "/data-center-services/vps",
-                          "application-hosting": "/data-center-services/application-hosting",
-                          "database-hosting": "/data-center-services/database-hosting",
-                          "storage-provisioning": "/data-center-services/storage-provisioning",
-                          "backup-and-dr": "/data-center-services/backup-and-dr",
-                        };
-                        const to = p.slug === "data-center-services" && dcRoutes[s.slug]
-                          ? dcRoutes[s.slug]
-                          : `/${p.slug}#${s.slug}`;
+                        const to = `/${p.slug}/${s.slug}`;
                         return (
                           <li key={s.slug}>
                             <Link to={to} className="flex items-start gap-3 rounded-md px-3 py-2 hover:bg-secondary" onClick={() => setOpenMenu(null)}>
@@ -111,17 +101,7 @@ const Header = () => {
                 </summary>
                 <ul className="pl-4 pb-2 space-y-1">
                   {p.services.map(s => {
-                    const dcRoutes: Record<string, string> = {
-                      "dedicated-servers": "/data-center-services/dedicated-servers",
-                      "vps": "/data-center-services/vps",
-                      "application-hosting": "/data-center-services/application-hosting",
-                          "database-hosting": "/data-center-services/database-hosting",
-                          "storage-provisioning": "/data-center-services/storage-provisioning",
-                          "backup-and-dr": "/data-center-services/backup-and-dr",
-                    };
-                    const to = p.slug === "data-center-services" && dcRoutes[s.slug]
-                      ? dcRoutes[s.slug]
-                      : `/${p.slug}#${s.slug}`;
+                    const to = `/${p.slug}/${s.slug}`;
                     return (
                       <li key={s.slug}>
                         <Link to={to} onClick={() => setMobileOpen(false)} className="block py-1 text-sm text-muted-foreground">{s.name}</Link>

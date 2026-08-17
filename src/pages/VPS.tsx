@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSeo } from "@/lib/seo";
 import PublicLayout from "@/components/site/PublicLayout";
 import CTABand from "@/components/site/CTABand";
 import { VPS_PLANS, VPS_CATEGORIES, type VpsCategory } from "@/data/vpsPlans";
@@ -26,13 +27,13 @@ const FEATURES = [
 ];
 
 const VPS = () => {
+  useSeo({ title: 'VPS Hosting India — Linux & Windows Virtual Servers | WularData', description: 'KVM-based VPS hosting with guaranteed resources, snapshot backups, Indian IPs and hourly resizing. Deploy in minutes.' });
   const [category, setCategory] = useState<VpsCategory | "All">("All");
   const [os, setOs] = useState<"All" | "Linux" | "Windows">("All");
   const [minRam, setMinRam] = useState<number>(0);
   const [sort, setSort] = useState<"price-asc" | "price-desc" | "ram-desc">("price-asc");
 
   useEffect(() => {
-    document.title = "VPS — Virtual Private Servers | WularData";
     window.scrollTo(0, 0);
   }, []);
 

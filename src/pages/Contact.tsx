@@ -1,3 +1,4 @@
+import { useSeo } from "@/lib/seo";
 import PublicLayout from "@/components/site/PublicLayout";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -18,6 +19,7 @@ const schema = z.object({
 });
 
 const Contact = () => {
+  useSeo({ title: 'Contact WularData — Request a Quote or Talk to Sales', description: "Talk to WularData's infrastructure experts. Request a tailored quote for servers, hosting, storage or managed IT services." });
   const [params] = useSearchParams();
   const initialService = params.get("service") || "";
   const initialCategory = params.get("category") || "";
@@ -29,7 +31,7 @@ const Contact = () => {
     message: "",
   });
 
-  useEffect(() => { document.title = "Contact WularData"; window.scrollTo(0, 0); }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const servicesForCategory = PILLARS.find(p => p.slug === form.service_category)?.services || [];
 

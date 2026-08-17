@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, Navigate, Link } from "react-router-dom";
 import PublicLayout from "@/components/site/PublicLayout";
+import { useSeo } from "@/lib/seo";
 import ServiceCard from "@/components/site/ServiceCard";
 import CTABand from "@/components/site/CTABand";
 import { PILLARS } from "@/data/services";
@@ -11,6 +12,12 @@ const PillarPage = () => {
   const slug = pathname.replace(/^\//, "");
   const pillar = PILLARS.find(p => p.slug === slug);
 
+  useSeo({
+    title: pillar ? `${pillar.name} — ${pillar.tagline} | WularData` : "WularData",
+    description: pillar?.description.slice(0, 155),
+    path: `/${slug}`,
+  });
+
   useEffect(() => {
     if (pillar && window.location.hash) {
       const id = window.location.hash.slice(1);
@@ -18,7 +25,6 @@ const PillarPage = () => {
     } else {
       window.scrollTo(0, 0);
     }
-    if (pillar) document.title = `${pillar.name} | WularData`;
   }, [pillar]);
 
   if (!pillar) return <Navigate to="/" replace />;

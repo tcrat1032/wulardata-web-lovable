@@ -1,10 +1,12 @@
+import { useSeo } from "@/lib/seo";
 import PublicLayout from "@/components/site/PublicLayout";
 import CTABand from "@/components/site/CTABand";
 import { Building2, Target, Users, MapPin } from "lucide-react";
 import { useEffect } from "react";
 
 const About = () => {
-  useEffect(() => { document.title = "About WularData"; window.scrollTo(0, 0); }, []);
+  useSeo({ title: 'About WularData — Indian Cloud & IT Infrastructure Partner', description: 'WularData is an Indian-owned provider of cloud, hosting and managed IT infrastructure with local data residency and 24x7 support.' });
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <PublicLayout>
       <section className="bg-gradient-hero text-white">

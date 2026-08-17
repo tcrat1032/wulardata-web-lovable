@@ -15,17 +15,40 @@ interface SitemapEntry {
 
 // Public, indexable routes only. Omit /not-found, /lovable, auth, portal and
 // admin (authenticated/internal) routes — these should not be indexed.
+// Service pages mirror the pillar/service structure in src/data/services.ts.
+const PILLAR_SERVICES: Record<string, string[]> = {
+  "data-center-services": [
+    "dedicated-servers",
+    "vps",
+    "application-hosting",
+    "database-hosting",
+    "storage-provisioning",
+    "backup-and-dr",
+    "connectivity-and-cdn",
+  ],
+  "hosting-services": [
+    "domain-registration",
+    "web-hosting",
+    "app-development",
+    "business-email",
+  ],
+  "it-infrastructure": [
+    "it-managed-services",
+    "consulting-and-migration",
+    "hardware-support",
+  ],
+};
+
 const entries: SitemapEntry[] = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
-  { path: "/data-center-services", changefreq: "monthly", priority: "0.9" },
-  { path: "/data-center-services/dedicated-servers", changefreq: "monthly", priority: "0.8" },
-  { path: "/data-center-services/vps", changefreq: "monthly", priority: "0.8" },
-  { path: "/data-center-services/application-hosting", changefreq: "monthly", priority: "0.8" },
-  { path: "/data-center-services/database-hosting", changefreq: "monthly", priority: "0.8" },
-  { path: "/data-center-services/storage-provisioning", changefreq: "monthly", priority: "0.8" },
-  { path: "/data-center-services/backup-and-dr", changefreq: "monthly", priority: "0.8" },
-  { path: "/hosting-services", changefreq: "monthly", priority: "0.9" },
-  { path: "/it-infrastructure", changefreq: "monthly", priority: "0.9" },
+  ...Object.entries(PILLAR_SERVICES).flatMap(([pillar, services]) => [
+    { path: `/${pillar}`, changefreq: "monthly" as const, priority: "0.9" },
+    ...services.map((s) => ({
+      path: `/${pillar}/${s}`,
+      changefreq: "monthly" as const,
+      priority: "0.8",
+    })),
+  ]),
   { path: "/about", changefreq: "yearly", priority: "0.5" },
   { path: "/contact", changefreq: "yearly", priority: "0.5" },
 ];
