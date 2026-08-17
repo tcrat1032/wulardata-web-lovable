@@ -48,6 +48,9 @@ const App = () => (
           <Route path="/portal/tickets" element={<Tickets />} />
           <Route path="/portal/profile" element={<Profile />} />
           <Route path="/admin" element={<Admin />} />
+          {/* Generic service pages: /:pillar/:service — must stay after the
+              hand-built pages above so those keep their own components. */}
+          <Route path="/:pillarSlug/:serviceSlug" element={<ServicePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
